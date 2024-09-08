@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container">
     <div
       class="page-header min-height-300 border-radius-xl mt-4"
       style="
@@ -21,7 +21,7 @@
         </div>
         <div class="col-auto my-auto">
           <div class="h-100">
-            <h5 class="mb-1">Richard Davis</h5>
+            <h5 class="mb-1"></h5>
             <p class="mb-0 font-weight-normal text-sm">CEO / Co-Founder</p>
           </div>
         </div>
