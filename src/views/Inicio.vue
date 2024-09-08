@@ -3,49 +3,20 @@
     <div class="card card-body mx-3 mx-md-4 mt-6">
       <div class="row">
         <div class="mt-3 row">
-          <div class="col-12 col-md-6 col-xl-4 position-relative">
+          <div class="col-12 col-md-12 col-xl-8">
             <div class="card card-plain h-100">
               <div class="card">
                 <div class="card-body p-3">
                   <div class="row">
                     <div class="d-flex flex-column h-50">
-                      <p class="mb-1 pt-2 text-bold">titulo
-                      </p>
-                      <h5 class="font-weight-bolder">noticia</h5>
-                      <p class="mb-5">¡Presentamos nuestro innovador Sistema de Asistencia Inteligente
-                        para Universidad Mariano Galvez! Diseñado para revolucionar la manera en que se
-                        gestiona la asistencia de catedráticos, nuestro sistema ofrece una solución
-                        integral que combina eficiencia, precisión y facilidad de uso.</p>
+                      <p class="mb-1 pt-2 text-bold">{{ articles[0].source.name }}</p>
+                      <h5 class="font-weight-bolder">{{ articles[0].title }}</h5>
+                      <p class="mb-5">{{ articles[0].description }}</p>
                     </div>
-                  </div>
-                  <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
-                    <div class="bg-gradient-warning border-radius-lg h-100">
-                      <img src="" class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <hr class="vertical dark" />
-          </div>
-          <div class="col-12 col-md-6 col-xl-4 mt-md-0 mt-4 position-relative">
-            <div class="card card-plain h-100">
-              <div class="card">
-                <div class="card-body p-3">
-                  <div class="row">
                     <div class="d-flex flex-column h-50">
-                      <p class="mb-1 pt-2 text-bold">titulo
-                      </p>
-                      <h5 class="font-weight-bolder">noticia</h5>
-                      <p class="mb-5">¡Presentamos nuestro innovador Sistema de Asistencia Inteligente
-                        para Universidad Mariano Galvez! Diseñado para revolucionar la manera en que se
-                        gestiona la asistencia de catedráticos, nuestro sistema ofrece una solución
-                        integral que combina eficiencia, precisión y facilidad de uso.</p>
-                    </div>
-                  </div>
-                  <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
-                    <div class="bg-gradient-warning border-radius-lg h-100">
-                      <img src="" class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves">
+                      <p class="mb-1 pt-2 text-bold">{{ articles[1].source.name }}</p>
+                      <h5 class="font-weight-bolder">{{ articles[1].title }}</h5>
+                      <p class="mb-5">{{ articles[1].description }}</p>
                     </div>
                   </div>
                 </div>
@@ -56,17 +27,19 @@
           <div class="mt-4 col-12 col-xl-4 mt-xl-0">
             <div class="card card-plain h-100">
               <div class="p-3 pb-0 card-header">
-                <h6 class="mb-0">Conversations</h6>
+                <h6 class="mb-0">Noticias populares</h6>
+                <p class="text-sm">Las noticias mas populares de las que todo mundo habla</p>
               </div>
-              <div class="p-3 card-body">
+              <div class="p-3 card-body news-scroll">
                 <ul class="list-group">
-                  <li class="px-0 mb-2 border-0 list-group-item d-flex align-items-center">
-                    <material-avatar class="me-3" :img="sophie" alt="kal" border-radius="lg" shadow="regular" />
-                    <div class="d-flex align-items-start flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">Sophie B.</h6>
-                      <p class="mb-0 text-xs">Hi! I need more information..</p>
+                  <li v-for="miniNew in miniNews" :key="miniNew.url"
+                    class="px-0 mb-2 border-0 list-group-item d-flex flex-column">
+                    <img :src="miniNew.urlToImage" alt="news-image" class="me-3 img-thumbnail" />
+                    <div class="d-flex flex-column mb-2">
+                      <h6 class="mb-0 text-sm">{{ miniNew.title }}</h6>
+                      <p class="mb-0 text-xs">{{ miniNew.description }}</p>
                     </div>
-                    <a class="mb-0 btn btn-link pe-3 ps-0 ms-auto" href="javascript:;">Reply</a>
+                    <a class="btn btn-link" :href="miniNew.url" target="_blank">VER</a>
                   </li>
                 </ul>
               </div>
@@ -101,7 +74,20 @@
     </div>
   </div>
 </template>
+<style scoped>
+.news-scroll {
+  max-height: 350px;
+  /* Ajusta según sea necesario */
+  overflow-y: auto;
+}
 
+.img-thumbnail {
+  width: auto;
+  /* Ajusta según sea necesario */
+  height: auto;
+  border-radius: 5px;
+}
+</style>
 <script>
 import apiService from "../services/new.service"; // Importar el servicio
 import DefaultProjectCard from "./components/DefaultProjectCard.vue";
@@ -111,9 +97,17 @@ export default {
   data() {
     return {
       articles: [],
-      query: 'Guatemala',     // Valor predeterminado para la búsqueda
-      fromDate: '2024-09-06', // Valor predeterminado para la fecha
-      sortBy: 'publishedAt'   // Valor predeterminado para ordenar
+      miniNews: [],
+      articleParams: {
+        q: 'Guatemala',
+        from: '',
+        sortBy: 'publishedAt'
+      },
+      miniNewsParams: {
+        q: 'Global',
+        from: '',
+        sortBy: 'popularity'
+      }
     };
   },
   components: {
@@ -121,14 +115,30 @@ export default {
   },
 
   mounted() {
-    this.fetchArticles(); // Llamada a la API al montar el componente
+    this.setDefaultFromDate();
+    this.fetchArticles();
+    this.fetchMiniNews();
   },
   methods: {
+    setDefaultFromDate() {
+      const today = new Date();
+      today.setDate(today.getDate() - 1);
+      const defaultDate = today.toISOString().split('T')[0];
+      this.articleParams.from = defaultDate;
+      this.miniNewsParams.from = defaultDate;
+    },
+    async fetchMiniNews() {
+      try {
+        const data = await apiService.getArticles(this.miniNewsParams);
+        this.miniNews = data;
+      } catch (error) {
+        console.error("Error fetching mini news:", error);
+      }
+    },
     async fetchArticles() {
       try {
-        const data = await apiService.getArticles(this.query, this.fromDate, this.sortBy);
-        console.log(data)
-        this.articles = data; // Asignar los artículos al estado
+        const data = await apiService.getArticles(this.articleParams);
+        this.articles = data;
       } catch (error) {
         console.error("Error fetching articles:", error);
       }
