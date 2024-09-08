@@ -8,7 +8,7 @@ N<template>
         <div class="pe-md-3 d-flex align-items-center" :class="isRTL ? 'me-md-auto' : 'ms-md-auto'">
           <material-input id="search" label="Buscar" :color="color ? 'light' : 'dark'" />
         </div>
-        <ul class="navbar-nav justify-content-end">
+        <ul class="navbar-nav navbar-collapse justify-content-end">
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle d-flex align-items-center py-0" href="#" role="button"
