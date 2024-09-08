@@ -6,7 +6,7 @@
     ]">{{ label }}</label>
     <input :id="id" :type="type" class="form-control" :class="getClasses(size)" :name="name" :value="value"
       :placeholder="placeholder" :isRequired="isRequired" :disabled="disabled"
-      @input="(e) => this.$emit('update:value', e.target.value)" />
+      @input="(e) => this.$emit('input', e.target.value)" />
   </div>
 </template>
 
@@ -70,7 +70,7 @@ export default {
     }
   },
 
-  emits: ['update:value'],
+  emits: ['input'],
   mounted() {
     setMaterialInput();
   },

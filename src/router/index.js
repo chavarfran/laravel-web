@@ -1,9 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Inicio from "../views/Inicio.vue";
-import Tables from "../views/Tables.vue";
-import Billing from "../views/Billing.vue";
-import Notifications from "../views/Notifications.vue";
-import Profile from "../views/Profile.vue";
 import Login from "../views/examples-api/Login.vue";
 import Signup from "../views/examples-api/Signup.vue";
 import PasswordForgot from "../views/examples-api/PasswordForgot.vue";
@@ -21,26 +17,6 @@ const routes = [
     path: "/inicio",
     name: "Inicio",
     component: Inicio,
-  },
-  {
-    path: "/tables",
-    name: "Tables",
-    component: Tables,
-  },
-  {
-    path: "/billing",
-    name: "Billing",
-    component: Billing,
-  },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    component: Notifications,
-  },
-  {
-    path: "/profile",
-    name: "Profile",
-    component: Profile,
   },
   {
     path: "/login",
