@@ -27,49 +27,48 @@
                                 class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
                                 <div class="card card-plain">
                                     <div class="pb-0 card-header bg-transparent mb-4">
-                                        <h4 class="font-weight-bolder">Sign In</h4>
+                                        <h4 class="font-weight-bolder">Iniciar sesión</h4>
                                         <p class="mb-0">
-                                            Enter your email and password to register
+                                            Ingresa tu email y contraseña para registrarte
                                         </p>
                                     </div>
                                     <div class="card-body">
                                         <Form role="form" :validation-schema="schema" @submit="handleSignup">
                                             <div class="mb-3">
-                                                <material-input-field id="name" v-model:value="user.name" label="Name"
+                                                <material-input-field id="name" v-model:value="user.name" label="Nombre"
                                                     name="name" variant="static"/>
                                             </div>
                                             <div class="mb-3">
                                                 <material-input-field id="email" v-model:value="user.email" type="email"
-                                                    label="Email" name="email" variant="static"/>
+                                                    label="Correo electronico" name="email" variant="static"/>
                                             </div>
                                             <div class="mb-3">
                                                 <material-input-field id="password" v-model:value="user.password"
-                                                    type="password" label="Password" name="password" variant="static"/>
+                                                    type="password" label="Contraseña" name="password" variant="static"/>
                                             </div>
                                             <div class="mb-3">
                                                 <material-input-field id="confirmPassword"
                                                     v-model:value="user.confirmPassword" type="password"
-                                                    label="Confirm Password" name="confirmPassword" variant="static"/>
+                                                    label="Confirmar contraseña" name="confirmPassword" variant="static"/>
                                             </div>
                                             <material-checkbox-field id="flexCheckDefault"
                                                 v-model:checked="termsChecked" name="checkbox">
-                                                I agree the
+                                                Estoy de acuerdo con los
                                                 <a href="../../../pages/privacy.html"
-                                                    class="text-dark font-weight-bolder">Terms and
-                                                    Conditions</a>
+                                                    class="text-dark font-weight-bolder">Terminos y
+                                                    Condiciones</a>
                                             </material-checkbox-field>
                                             <div class="text-center">
                                                 <material-button color="success" variant="gradient" full-width
-                                                    class="mt-4 mb-0">Sign up</material-button>
+                                                    class="mt-4 mb-0">Registrarse</material-button>
                                             </div>
                                         </Form>
                                     </div>
                                     <div class="px-1 pt-0 text-center card-footer px-lg-2">
                                         <p class="mx-auto mb-4 text-sm">
-                                            Already have an account?
+                                            ¿Ya tienes una cuenta?
                                             <router-link :to="{ name: 'Login' }"
-                                                class="text-success text-gradient font-weight-bold">Sign
-                                                in</router-link>
+                                                class="text-success text-gradient font-weight-bold">Iniciar sesión</router-link>
                                         </p>
                                     </div>
                                 </div>
@@ -107,11 +106,11 @@ export default {
             user: [],
             termsChecked: true,
             schema: Yup.object().shape({
-                name: Yup.string().required("Name is a required input"),
-                email: Yup.string().email("Email has to be a valid email address").required("Email is a required input"),
-                password: Yup.string().required("Password is a required input").min(8, "Password must have at least 8 characters"),
-                confirmPassword: Yup.string().required("Confirm password is a required input").oneOf([Yup.ref('password')], 'Your passwords do not match.'),
-                checkbox: Yup.boolean().test('is-checked', 'You must agree to the terms and conditions', value => value === true)
+                name: Yup.string().required("El nombre es una entrada obligatoria"),
+                email: Yup.string().email("El correo electrónico debe ser una dirección de correo electrónico válida.").required("El correo electrónico es una entrada obligatoria"),
+                password: Yup.string().required("La contraseña es una entrada obligatoria").min(8, "La contraseña debe tener al menos 8 caracteres"),
+                confirmPassword: Yup.string().required("Confirmación La contraseña es una entrada obligatoria").oneOf([Yup.ref('password')], 'Tus contraseñas no coinciden.'),
+                checkbox: Yup.boolean().test('is-checked', 'Debes aceptar los términos y condiciones', value => value === true)
             }),
         }
     },
