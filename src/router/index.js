@@ -5,8 +5,6 @@ import Billing from "../views/Billing.vue";
 import RTL from "../views/Rtl.vue";
 import Notifications from "../views/Notifications.vue";
 import Profile from "../views/Profile.vue";
-import SignIn from "../views/SignIn.vue";
-import SignUp from "../views/SignUp.vue";
 import Login from "../views/examples-api/Login.vue";
 import Signup from "../views/examples-api/Signup.vue";
 import PasswordForgot from "../views/examples-api/PasswordForgot.vue";
@@ -49,16 +47,6 @@ const routes = [
     path: "/profile",
     name: "Profile",
     component: Profile,
-  },
-  {
-    path: "/sign-in",
-    name: "SignIn",
-    component: SignIn,
-  },
-  {
-    path: "/sign-up",
-    name: "SignUp",
-    component: SignUp,
   },
   {
     path: "/login",
