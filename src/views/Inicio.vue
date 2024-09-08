@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="card card-body mx-3 mx-md-4 mt-8">
+    <div class="card card-body mx-3 mx-md-4 mt-6">
       <div class="row">
         <div class="mt-3 row">
           <div class="col-12 col-md-6 col-xl-4 position-relative">
@@ -8,21 +8,21 @@
               <div class="card">
                 <div class="card-body p-3">
                   <div class="row">
-                      <div class="d-flex flex-column h-50">
-                        <p class="mb-1 pt-2 text-bold">Sistema de control de asistencia
-                        </p>
-                        <h5 class="font-weight-bolder">Universidad mariano galvez</h5>
-                        <p class="mb-5">¡Presentamos nuestro innovador Sistema de Asistencia Inteligente
-                          para Universidad Mariano Galvez! Diseñado para revolucionar la manera en que se
-                          gestiona la asistencia de catedráticos, nuestro sistema ofrece una solución
-                          integral que combina eficiencia, precisión y facilidad de uso.</p>
-                      </div>
+                    <div class="d-flex flex-column h-50">
+                      <p class="mb-1 pt-2 text-bold">titulo
+                      </p>
+                      <h5 class="font-weight-bolder">noticia</h5>
+                      <p class="mb-5">¡Presentamos nuestro innovador Sistema de Asistencia Inteligente
+                        para Universidad Mariano Galvez! Diseñado para revolucionar la manera en que se
+                        gestiona la asistencia de catedráticos, nuestro sistema ofrece una solución
+                        integral que combina eficiencia, precisión y facilidad de uso.</p>
                     </div>
-                    <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
-                      <div class="bg-gradient-warning border-radius-lg h-100">
-                        <img src="" class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves">
-                      </div>
+                  </div>
+                  <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
+                    <div class="bg-gradient-warning border-radius-lg h-100">
+                      <img src="" class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves">
                     </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -33,21 +33,21 @@
               <div class="card">
                 <div class="card-body p-3">
                   <div class="row">
-                      <div class="d-flex flex-column h-50">
-                        <p class="mb-1 pt-2 text-bold">Sistema de control de asistencia
-                        </p>
-                        <h5 class="font-weight-bolder">Universidad mariano galvez</h5>
-                        <p class="mb-5">¡Presentamos nuestro innovador Sistema de Asistencia Inteligente
-                          para Universidad Mariano Galvez! Diseñado para revolucionar la manera en que se
-                          gestiona la asistencia de catedráticos, nuestro sistema ofrece una solución
-                          integral que combina eficiencia, precisión y facilidad de uso.</p>
-                      </div>
+                    <div class="d-flex flex-column h-50">
+                      <p class="mb-1 pt-2 text-bold">titulo
+                      </p>
+                      <h5 class="font-weight-bolder">noticia</h5>
+                      <p class="mb-5">¡Presentamos nuestro innovador Sistema de Asistencia Inteligente
+                        para Universidad Mariano Galvez! Diseñado para revolucionar la manera en que se
+                        gestiona la asistencia de catedráticos, nuestro sistema ofrece una solución
+                        integral que combina eficiencia, precisión y facilidad de uso.</p>
                     </div>
-                    <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
-                      <div class="bg-gradient-warning border-radius-lg h-100">
-                        <img src="" class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves">
-                      </div>
+                  </div>
+                  <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
+                    <div class="bg-gradient-warning border-radius-lg h-100">
+                      <img src="" class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves">
                     </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -76,34 +76,24 @@
         <div class="row mt-4">
           <div class="col-12">
             <div class="mb-5 ps-3">
-              <h6 class="mb-1">Projects</h6>
-              <p class="text-sm">Architects design houses</p>
+              <h6 class="mb-1">Todas las noticias</h6>
+              <p class="text-sm">Las noticias mas relevantes del momento</p>
             </div>
-            <div class="row">
-              <default-project-card title="Modern" :image="img1" label="Project #2" description="As Uber works through a huge amount of internal
-                management turmoil." :authors="[
-                  {
-                    image: team1,
-                    name: 'Elena Morison',
-                  },
-                  {
-                    image: team2,
-                    name: 'Ryan Milly',
-                  },
-                  {
-                    image: team3,
-                    name: 'Nick Daniel',
-                  },
-                  {
-                    image: team4,
-                    name: 'Peterson',
-                  },
-                ]" :action="{
-                  color: 'success',
-                  label: 'View Project',
-                }" />
-
-              
+            <div class="row" style="margin-left: 0; margin-right: 0;">
+              <div v-for="article in articles" :key="article.title" class="col-12 mb-4"
+                style="padding-left: 0; padding-right: 0;">
+                <default-project-card :title="article.title" :image="article.urlToImage" :label="article.source.name"
+                  :description="article.description" :authors="[
+                    {
+                      image: '', // Puedes agregar imágenes de autores si tienes
+                      name: article.author || 'Desconocido',
+                    }
+                  ]" :action="{
+                    color: 'success',
+                    label: 'Leer más',
+                    url: article.url
+                  }" />
+              </div>
             </div>
           </div>
         </div>
@@ -113,57 +103,36 @@
 </template>
 
 <script>
+import apiService from "../services/new.service"; // Importar el servicio
 import DefaultProjectCard from "./components/DefaultProjectCard.vue";
-
-import MaterialAvatar from "@/components/MaterialAvatar.vue";
-import sophie from "@/assets/img/kal-visuals-square.jpg";
-import marie from "@/assets/img/marie.jpg";
-import ivana from "@/assets/img/ivana-square.jpg";
-import peterson from "@/assets/img/team-4.jpg";
-import nick from "@/assets/img/team-3.jpg";
-import img1 from "@/assets/img/home-decor-1.jpg";
-import img2 from "@/assets/img/home-decor-2.jpg";
-import img3 from "@/assets/img/home-decor-3.jpg";
-import team1 from "@/assets/img/team-1.jpg";
-import team2 from "@/assets/img/team-2.jpg";
-import team3 from "@/assets/img/team-3.jpg";
-import team4 from "@/assets/img/team-4.jpg";
-
-import setNavPills from "@/assets/js/nav-pills.js";
-import setTooltip from "@/assets/js/tooltip.js";
 
 export default {
   name: "dashboard-default",
   data() {
     return {
-      showMenu: false,
-      sophie,
-      marie,
-      ivana,
-      peterson,
-      nick,
-      img1,
-      team1,
-      team2,
-      team3,
-      team4,
-      img2,
-      img3,
+      articles: [],
+      query: 'Guatemala',     // Valor predeterminado para la búsqueda
+      fromDate: '2024-09-06', // Valor predeterminado para la fecha
+      sortBy: 'publishedAt'   // Valor predeterminado para ordenar
     };
   },
   components: {
     DefaultProjectCard,
-
-    MaterialAvatar,
   },
 
   mounted() {
-    this.$store.state.isAbsolute = true;
-    setNavPills();
-    setTooltip();
+    this.fetchArticles(); // Llamada a la API al montar el componente
   },
-  beforeUnmount() {
-    this.$store.state.isAbsolute = false;
-  },
+  methods: {
+    async fetchArticles() {
+      try {
+        const data = await apiService.getArticles(this.query, this.fromDate, this.sortBy);
+        console.log(data)
+        this.articles = data; // Asignar los artículos al estado
+      } catch (error) {
+        console.error("Error fetching articles:", error);
+      }
+    }
+  }
 };
 </script>

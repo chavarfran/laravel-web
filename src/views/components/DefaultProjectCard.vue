@@ -1,13 +1,9 @@
 <template>
-  <div class="mb-4 col-xl-3 col-md-6 mb-xl-0">
+  <div class="mb-4 col-12 mb-xl-0">
     <div class="card card-blog card-plain">
       <div class="card-header p-0 mt-n4 mx-3">
         <a class="shadow-xl d-block border-radius-xl">
-          <img
-            :src="image"
-            alt="img-blur-shadow"
-            class="shadow img-fluid border-radius-xl"
-          />
+          <img :src="image" alt="img-blur-shadow" class="shadow img-fluid border-radius-xl" />
         </a>
       </div>
       <div class="p-3 card-body">
@@ -19,23 +15,13 @@
           {{ description }}
         </p>
         <div class="d-flex align-items-center justify-content-between">
-          <button
-            type="button"
-            class="mb-0 btn btn-sm"
-            :class="`btn-outline-${action.color}`"
-          >
+          <button type="button" class="mb-0 btn btn-sm" :class="`btn-outline-${action.color}`"
+            @click="handleActionClick">
             {{ action.label }}
           </button>
           <div class="mt-2 avatar-group">
-            <a
-              v-for="({ image: authorImage, name }, index) of authors"
-              :key="index"
-              href="javascript:;"
-              class="avatar avatar-xs rounded-circle"
-              data-bs-toggle="tooltip"
-              data-bs-placement="bottom"
-              :title="name"
-            >
+            <a v-for="({ image: authorImage, name }, index) of authors" :key="index" href="javascript:;"
+              class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" :title="name">
               <img :alt="authorImage" :src="authorImage" />
             </a>
           </div>
@@ -67,17 +53,23 @@ export default {
     },
     action: {
       type: Object,
-      route: String,
-      color: String,
-      label: String,
-      default: () => {},
+      default: () => ({
+        color: '',
+        label: '',
+        url: ''
+      }),
     },
     authors: {
       type: Array,
-      image: String,
-      name: String,
       default: () => [],
     },
   },
+  methods: {
+    handleActionClick() {
+      if (this.action.url) {
+        window.open(this.action.url, '_blank'); // Abre la URL en una nueva pestaña
+      }
+    }
+  }
 };
 </script>
