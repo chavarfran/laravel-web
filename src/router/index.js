@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Dashboard from "../views/Dashboard.vue";
+import Inicio from "../views/Inicio.vue";
 import Tables from "../views/Tables.vue";
 import Billing from "../views/Billing.vue";
 import RTL from "../views/Rtl.vue";
@@ -19,9 +19,9 @@ const routes = [
     redirect: "/login",
   },
   {
-    path: "/dashboard",
-    name: "Dashboard",
-    component: Dashboard,
+    path: "/inicio",
+    name: "Inicio",
+    component: Inicio,
   },
   {
     path: "/tables",

@@ -109,7 +109,7 @@ export default {
         async handleLogin() {
             try {
                 await this.$store.dispatch('auth/login', this.user);
-                this.$router.push({ name: 'Dashboard' })
+                this.$router.push({ name: 'Inicio' })
             } catch (error) {
                 showSwal.methods.showSwal({
                     type: "error",

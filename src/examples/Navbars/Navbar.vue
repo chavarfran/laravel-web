@@ -6,7 +6,7 @@ N<template>
       <div class="mt-2 collapse navbar-collapse mt-sm-0 me-md-0 me-sm-4" :class="isRTL ? 'px-0' : 'me-sm-4'"
         id="navbar">
         <div class="pe-md-3 d-flex align-items-center" :class="isRTL ? 'me-md-auto' : 'ms-md-auto'">
-          <material-input id="search" label="Search" :color="color ? 'light' : 'dark'" />
+          <material-input id="search" label="Buscar" :color="color ? 'light' : 'dark'" />
         </div>
         <ul class="navbar-nav justify-content-end">
 
@@ -24,7 +24,7 @@ N<template>
                   <i class="material-icons ms-2" :class="isRTL ? 'ms-sm-2' : 'me-sm-1'">
                     account_circle
                   </i>
-                  My Profile
+                  Mi perfil
                 </router-link>
               </li>
 
