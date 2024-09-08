@@ -1,6 +1,6 @@
 <template>
     <navbar btnBackground="bg-gradient-" />
-    <div class="page-header align-items-start min-vh-100">
+    <div class="page-header align-items-start min-vh-100" >
         <span class="mask bg-white opacity-6"></span>
 
         <div class="container mb-6">
@@ -86,8 +86,8 @@ export default {
         return {
             user: { email: "", password: "" },
             schema: Yup.object().shape({
-                email: Yup.string().email("El correo electrónico debe ser una dirección de correo electrónico válida.").required("Email is a required input"),
-                password: Yup.string().required("Password is a required input")
+                email: Yup.string().email("El correo electrónico debe ser una dirección de correo electrónico válida.").required("El correo electrónico es una entrada obligatoria"),
+                password: Yup.string().required("La contraseña es una entrada obligatoria")
             }),
         };
     },
