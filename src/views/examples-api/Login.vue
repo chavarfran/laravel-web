@@ -9,14 +9,10 @@
                 </div>
                 <div class="col-lg-4 col-md-8 col-12 mx-auto pb-10">
                     <div class="card z-index-0 fadeIn3 fadeInBottom">
-                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                            <div class="bg-gradient-primary shadow-success border-radius-lg py-3 pe-1">
-                                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
-                                    Noticias Solvere
-                                </h4>
-                            </div>
-                        </div>
                         <div class="card-body">
+                            <h4 class="text-success font-weight-bolder text-center mt-2 mb-0">
+                                    Noticias solvere
+                                </h4>
                             <Form role="form" class="text-start mt-3" :validation-schema="schema" @submit="handleLogin"
                                 @invalid-submit="badSubmit">
                                 <div class="mb-3">
@@ -32,8 +28,11 @@
                                     <material-button class="my-4 mb-2" variant="gradient" color="success" full-width>
                                         <span>Iniciar sesión</span>
                                     </material-button>
-                                    <material-button class="my-4 mb-2" variant="gradient" color="dark" full-width>
+                                    <material-button class=" mb-2" variant="gradient" color="dark" full-width>
                                         <span><i class="fab fa-google text-white text-lg"></i></span>
+                                    </material-button>
+                                    <material-button class=" mb-2" variant="gradient" color="dark" full-width>
+                                        <span><i class="fab fa-microsoft text-white text-lg"></i></span>
                                     </material-button>
                                 </div>
                                 <p class="mt-4 text-sm text-center">
@@ -87,7 +86,7 @@ export default {
         return {
             user: { email: "", password: "" },
             schema: Yup.object().shape({
-                email: Yup.string().email("Email has to be a valid email address").required("Email is a required input"),
+                email: Yup.string().email("El correo electrónico debe ser una dirección de correo electrónico válida.").required("Email is a required input"),
                 password: Yup.string().required("Password is a required input")
             }),
         };
