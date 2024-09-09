@@ -10,6 +10,6 @@ export default {
       },
       params
     });
-    return response.data.articles;
+    return response.data;
   }
 };

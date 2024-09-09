@@ -134,11 +134,12 @@ export default {
                     message: "Successfully registered!",
                     width: 500
                 });
-                this.$router.push({ name: 'Profile' })
+                this.$router.push({ name: 'Inicio' })
             } catch (error) {
+                console.log(error)
                 showSwal.methods.showSwal({
                     type: "error",
-                    message: "Oops, something went wrong!",
+                    message: error,
                     width: 500
                 });
             }

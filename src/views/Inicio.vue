@@ -101,14 +101,10 @@ export default {
       articles: [],
       miniNews: [],
       articleParams: {
-        q: 'Guerra',
-        from: '',
-        sortBy: 'publishedAt'
+        category_id: 1,
       },
       miniNewsParams: {
-        q: 'Global',
-        from: '',
-        sortBy: 'popularity'
+        category_id: 2,
       }
     };
   },
@@ -141,6 +137,7 @@ export default {
     async fetchArticles() {
       try {
         const data = await apiService.getArticles(this.articleParams);
+        console.log(data)
         this.articles = data;
       } catch (error) {
         console.error("Error fetching articles:", error);

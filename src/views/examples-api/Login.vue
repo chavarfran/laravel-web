@@ -103,7 +103,7 @@ export default {
             } catch (error) {
                 showSwal.methods.showSwal({
                     type: "error",
-                    message: "Invalid credentials!",
+                    message: error,
                     width: 500
                 });
             }
