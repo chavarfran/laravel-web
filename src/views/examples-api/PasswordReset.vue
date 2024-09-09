@@ -15,7 +15,7 @@
                             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                                 <div
                                     class="bg-gradient-warning shadow-warning border-radius-lg py-3 pe-1 text-center py-4">
-                                    <h3 class="font-weight-bolder text-white">Reset Password</h3>
+                                    <h3 class="font-weight-bolder text-white">Restablecer contraseña</h3>
                                 </div>
                             </div>
                             <div class="py-4 card-body">

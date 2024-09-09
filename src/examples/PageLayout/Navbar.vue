@@ -23,21 +23,21 @@
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item">
-            <router-link class="nav-link me-2" to="/sign-up">
+            <router-link class="nav-link me-2" to="/signup">
               <i
                 class="fas fa-user-circle opacity-6 me-1"
                 aria-hidden="true"
-                :class="isBlur ? 'text-dark' : 'text-white'"
+                :class="text-dark"
               ></i>
               Registrarse
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link me-2" to="/sign-in">
+            <router-link class="nav-link me-2" to="/login">
               <i
                 class="fas fa-key opacity-6 me-1"
                 aria-hidden="true"
-                :class="isBlur ? 'text-dark' : 'text-white'"
+                :class="text-dark"
               ></i>
               Iniciar sesion
             </router-link>
