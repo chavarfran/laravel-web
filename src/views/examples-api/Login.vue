@@ -1,13 +1,10 @@
 <template>
-    <navbar btnBackground="bg-gradient-" />
+    <navbar btnBackground="bg-gradient" />
     <div class="page-header align-items-start min-vh-100" >
         <span class="mask bg-white opacity-6"></span>
-
-        <div class="container mb-6">
+        <div class="container">
             <div class="row">
-                <div class="header pt-10 w-100  d-flex justify-content-center">
-                </div>
-                <div class="col-lg-4 col-md-8 col-12 mx-auto pb-10">
+                <div class="mt-10 col-lg-4 col-md-8 col-12 mx-auto ">
                     <div class="card z-index-0 fadeIn3 fadeInBottom">
                         <div class="card-body">
                             <h4 class="text-success font-weight-bolder text-center mt-2 mb-0">
@@ -49,17 +46,8 @@
                     </div>
                 </div>
             </div>
+            <app-footer />
         </div>
-
-        <footer class="footer position-absolute bottom-2 py-2 w-100">
-            <div class="container">
-                <div class="row align-items-center justify-content-lg-between">
-                    <div class="col-12 col-md-6 my-auto">
-                        
-                    </div>
-                </div>
-            </div>
-        </footer>
     </div>
 </template>
 
@@ -68,6 +56,7 @@ import Navbar from "@/examples/PageLayout/Navbar.vue";
 import MaterialInputField from "@/components/MaterialInputField.vue";
 import MaterialSwitch from "@/components/MaterialSwitch.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
+import AppFooter from "@/examples/PageLayout/Footer.vue";
 import showSwal from "@/mixins/showSwal";
 import { mapMutations } from "vuex";
 import { Form } from "vee-validate"
@@ -81,6 +70,7 @@ export default {
         MaterialSwitch,
         MaterialButton,
         Form,
+        AppFooter,
     },
     data() {
         return {

@@ -27,7 +27,7 @@
               <i
                 class="fas fa-user-circle opacity-6 me-1"
                 aria-hidden="true"
-                :class="isBlur ? 'text-dark' : 'text-white'"
+                :class="text-dark"
               ></i>
               Registrarse
             </router-link>
@@ -37,7 +37,7 @@
               <i
                 class="fas fa-key opacity-6 me-1"
                 aria-hidden="true"
-                :class="isBlur ? 'text-dark' : 'text-white'"
+                :class="text-dark"
               ></i>
               Iniciar sesion
             </router-link>
