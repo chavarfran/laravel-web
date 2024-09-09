@@ -2,7 +2,22 @@
   <div class="container">
     <div class="card card-body mx-3 mx-md-4 mt-2">
       <div class="row">
-        <material-input id="search" label="Buscar noticias" :color="color ? 'light' : 'dark'"/>
+        <material-input id="search" label="Buscar noticias" :color="color ? 'light' : 'dark'" />
+
+        <!-- Category Select Dropdown -->
+        <div class="col-12 mt-3">
+          <label for="category">Seleccionar Categoría:</label>
+          <select v-model="articleParams.category_id" @change="fetchArticles" id="category" class="form-select">
+            <option value="1">Negocios</option>
+            <option value="2">Entretenimiento</option>
+            <option value="3">General</option>
+            <option value="4">Salud</option>
+            <option value="5">Ciencia</option>
+            <option value="6">Deportes</option>
+            <option value="7">Tecnología</option>
+          </select>
+        </div>
+
         <div class="mt-3 row">
           <div class="col-12 col-md-12 col-xl-8">
             <div class="card card-plain h-100">
@@ -47,6 +62,7 @@
             </div>
           </div>
         </div>
+
         <div class="row mt-4">
           <div class="col-12">
             <div class="mb-5 ps-3">
@@ -112,7 +128,6 @@ export default {
     DefaultProjectCard,
     MaterialInput,
   },
-
   mounted() {
     this.setDefaultFromDate();
     this.fetchArticles();
@@ -137,7 +152,7 @@ export default {
     async fetchArticles() {
       try {
         const data = await apiService.getArticles(this.articleParams);
-        console.log(data)
+        console.log(data);
         this.articles = data;
       } catch (error) {
         console.error("Error fetching articles:", error);
