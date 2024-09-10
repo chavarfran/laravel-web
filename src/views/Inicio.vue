@@ -65,7 +65,10 @@
           </nav>
         </div>
         <div class="mt-3 row">
-          <material-input id="search" label="Buscar noticias" :color="color ? 'light' : 'dark'" />
+          <div class="input-group">
+            <input id="search" type="text" class="form-control" placeholder="Buscar noticias" v-model="searchQuery"
+              @input="performSearch" />
+          </div>
           <div class="col-12 col-md-12 col-xl-8">
             <div class="card card-plain h-100">
               <div class="card">
@@ -165,16 +168,17 @@
 <script>
 import apiService from "../services/new.service"; // Importar el servicio
 import DefaultProjectCard from "./components/DefaultProjectCard.vue";
-import MaterialInput from "@/components/MaterialInput.vue";
 
 export default {
   name: "dashboard-default",
   data() {
     return {
+      searchQuery: "",
       articles: [],
       miniNews: [],
       articleParams: {
         category_id: 1,
+        query: ""
       },
       miniNewsParams: {
         category_id: 2,
@@ -183,7 +187,6 @@ export default {
   },
   components: {
     DefaultProjectCard,
-    MaterialInput,
   },
   mounted() {
     this.setDefaultFromDate();
@@ -207,9 +210,10 @@ export default {
       }
     },
     async fetchArticles() {
+      this.articleParams.query = this.searchQuery;
+
       try {
         const data = await apiService.getArticles(this.articleParams);
-        console.log(data);
         this.articles = data;
       } catch (error) {
         console.error("Error fetching articles:", error);
@@ -218,6 +222,10 @@ export default {
     // Method to update category based on selection
     updateCategory(categoryId) {
       this.articleParams.category_id = categoryId;
+      this.fetchArticles();
+    },
+    performSearch() {
+      this.articleParams.query = this.searchQuery;
       this.fetchArticles();
     },
   },
