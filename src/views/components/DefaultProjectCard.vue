@@ -3,7 +3,7 @@
     <div class="card card-blog card-plain">
       <div class="card-header p-0 mt-n4 mx-3">
         <a class="shadow-xl d-block border-radius-xl">
-          <img :src="image" alt="img-blur-shadow" class="shadow img-fluid border-radius-xl" />
+          <img :src="image" alt="img-blur-shadow" class="shadow img-fluid border-radius-xl w-100 h-auto" />
         </a>
       </div>
       <div class="p-3 card-body">
@@ -19,12 +19,6 @@
             @click="handleActionClick">
             {{ action.label }}
           </button>
-          <div class="mt-2 avatar-group">
-            <a v-for="({ image: authorImage, name }, index) of authors" :key="index" href="javascript:;"
-              class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" :title="name">
-              <img :alt="authorImage" :src="authorImage" />
-            </a>
-          </div>
         </div>
       </div>
     </div>
