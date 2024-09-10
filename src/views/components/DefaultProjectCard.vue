@@ -61,7 +61,7 @@ export default {
   methods: {
     handleActionClick() {
       if (this.action.url) {
-        window.open(this.action.url, '_blank'); // Abre la URL en una nueva pestaña
+        window.open(this.action.url);
       }
     }
   }
