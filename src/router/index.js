@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Inicio from "../views/Inicio.vue";
+import ArticleDetail from "../views/ArticleDetail.vue";
 import Login from "../views/examples-api/Login.vue";
 import Signup from "../views/examples-api/Signup.vue";
 import PasswordForgot from "../views/examples-api/PasswordForgot.vue";
@@ -17,6 +18,12 @@ const routes = [
     path: "/inicio",
     name: "Inicio",
     component: Inicio,
+  },
+  {
+    path: "/articulo/:id",
+    name: "ArticleDetail",
+    component: ArticleDetail,
+    props: true,
   },
   {
     path: "/login",

@@ -118,7 +118,7 @@
                   :action="{
                     color: 'success',
                     label: 'Leer más',
-                    url: article.url,
+                    url: `/articulo/${article.source.id}`,
                   }"
                 />
               </div>

@@ -11,5 +11,14 @@ export default {
       params
     });
     return response.data;
+  },
+
+  async getArticleId(id) {
+    const response = await axios.get(`${API_URL}/news/${id}`, {
+      headers: {
+        Accept: "application/json",
+      },
+    });
+    return response.data;
   }
 };
